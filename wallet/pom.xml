@@ -52,8 +52,8 @@
 		<!-- com.google.bitcoin.* -->
 		<dependency>
 			<groupId>com.google</groupId>
-			<artifactId>bitcoinj</artifactId>
-			<version>0.11</version>
+			<artifactId>preminecoinj</artifactId>
+            <version>0.11</version>
 		</dependency>
 
 		<!-- de.schildbach.wallet.integration.android.* -->
@@ -184,20 +184,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<!-- to generate reports, run: mvn clean install site -->
-	<!-- then browse to: target/site/index.html -->
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>2.5.2</version>
-				<configuration>
-					<onlyAnalyze>de.schildbach.wallet.-</onlyAnalyze>
-				</configuration>
-			</plugin>
-		</plugins>
-	</reporting>
 
 </project>
