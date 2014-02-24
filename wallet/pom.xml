@@ -4,13 +4,13 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>wallet</artifactId>
+	<artifactId>com.preminer</artifactId>
 	<packaging>apk</packaging>
-	<version>3.33-test</version>
-	<name>Bitcoin Wallet</name>
+	<version>1</version>
+	<name>Preminer</name>
 
 	<parent>
-		<groupId>de.schildbach.wallet</groupId>
+		<groupId>com.preminer</groupId>
 		<artifactId>base</artifactId>
 		<version>1</version>
 	</parent>
@@ -56,9 +56,9 @@
             <version>0.11</version>
 		</dependency>
 
-		<!-- de.schildbach.wallet.integration.android.* -->
+		<!-- com.preminer.integration.android.* -->
 		<dependency>
-			<groupId>de.schildbach.wallet</groupId>
+			<groupId>com.preminer</groupId>
 			<artifactId>integration-android</artifactId>
 			<version>1.0</version>
 		</dependency>

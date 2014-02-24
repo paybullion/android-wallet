@@ -10,7 +10,7 @@
 	<name>Sample for Bitcoin Integration for Android</name>
 
 	<parent>
-		<groupId>de.schildbach.wallet</groupId>
+		<groupId>com.preminer</groupId>
 		<artifactId>base</artifactId>
 		<version>1</version>
 	</parent>
