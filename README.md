@@ -1,4 +1,4 @@
-Welcome to _Bitcoin Wallet_, a standalone Bitcoin payment app for your Android device!
+Welcome to _Premine Wallet_, a standalone Preminecoin payment app for your Android device!
 
 This project contains several sub-projects:
 
