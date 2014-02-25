@@ -103,6 +103,8 @@ public class Constants
 	public static final String MARKET_APP_URL = "market://details?id=%s";
 	public static final String WEBMARKET_APP_URL = "https://play.google.com/store/apps/details?id=%s";
 	public static final String MARKET_PUBLISHER_URL = "market://search?q=pub:\"EcuaMobi\"";
+    // PMC
+    public static final String PREMINECOIN_URL = "http://premineco.in/";
 
     // PMC
 	//public static final String VERSION_URL = "http://wallet.schildbach.de/version";

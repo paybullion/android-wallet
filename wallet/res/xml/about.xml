@@ -2,9 +2,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
 	<PreferenceCategory android:title="@string/about_title" >
-		<Preference
-			android:key="about_version"
-			android:title="Version" />
+        <Preference
+            android:key="about_version"
+            android:title="Version" />
+        <Preference
+            android:key="about_preminecoin"
+            android:title="Preminecoin" />
 		<Preference
 			android:key="about_license"
 			android:title="@string/about_license_title" />

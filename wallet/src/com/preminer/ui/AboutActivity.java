@@ -46,6 +46,8 @@ public final class AboutActivity extends SherlockPreferenceActivity
 	private static final String KEY_ABOUT_CREDITS_BITCOINJ = "about_credits_bitcoinj";
 	private static final String KEY_ABOUT_CREDITS_ZXING = "about_credits_zxing";
 	private static final String KEY_ABOUT_CREDITS_ICON = "about_credits_icon";
+    // PMC
+    private static final String KEY_ABOUT_PREMINECOIN = "about_preminecoin";
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -65,6 +67,8 @@ public final class AboutActivity extends SherlockPreferenceActivity
 		findPreference(KEY_ABOUT_CREDITS_BITCOINJ).setSummary(Constants.CREDITS_BITCOINJ_URL);
 		findPreference(KEY_ABOUT_CREDITS_ZXING).setSummary(Constants.CREDITS_ZXING_URL);
 		findPreference(KEY_ABOUT_CREDITS_ICON).setSummary(Constants.CREDITS_ICON_URL);
+        // PMC
+        findPreference(KEY_ABOUT_PREMINECOIN).setSummary(Constants.PREMINECOIN_URL);
 	}
 
 	@Override
@@ -128,6 +132,12 @@ public final class AboutActivity extends SherlockPreferenceActivity
 			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.CREDITS_ICON_URL)));
 			finish();
 		}
+        // PMC
+        else if(KEY_ABOUT_PREMINECOIN.equals(key))
+        {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.PREMINECOIN_URL)));
+            finish();
+        }
 
 		return false;
 	}

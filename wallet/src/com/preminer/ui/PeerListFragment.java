@@ -113,8 +113,6 @@ public final class PeerListFragment extends SherlockListFragment
 
 				final Peer peer = getItem(position);
 
-                Log.e("Peer", peer.getAddress().toString());
-
 				final VersionMessage versionMessage = peer.getPeerVersionMessage();
 				final boolean isDownloading = peer.getDownloadData();
 

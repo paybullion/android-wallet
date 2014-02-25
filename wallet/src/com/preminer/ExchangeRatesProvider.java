@@ -147,13 +147,9 @@ public class ExchangeRatesProvider extends ContentProvider {
             // PMC
             // First, we need the BTC<->PMC parity
             Map<String, ExchangeRate> newExchangeRatesPMC = null;
-            URL pmcURL = null;
-            if (newExchangeRatesPMC == null)
-            {
-                pmcURL = POLONIEX_URL;
-                newExchangeRatesPMC = requestPMCRates(pmcURL, POLONIEX_FIELDS);
-            }
-            if(newExchangeRatesPMC == null)
+            URL pmcURL = POLONIEX_URL;
+            newExchangeRatesPMC = requestPMCRates(pmcURL, POLONIEX_FIELDS);
+            if(newExchangeRatesPMC == null || newExchangeRatesPMC.get(PMC_CURRENCY) == null)
             {
                 pmcURL = CRYPTORUSH_URL;
                 newExchangeRatesPMC = requestPMCRates(pmcURL, CRYPTORUSH_FIELDS);
@@ -162,7 +158,7 @@ public class ExchangeRatesProvider extends ContentProvider {
             Map<String, ExchangeRate> newExchangeRates = null;
             // PMC
             // We can continue only if we have the PMC rate
-            if (newExchangeRatesPMC != null) {
+            if (newExchangeRatesPMC != null && newExchangeRatesPMC.get(PMC_CURRENCY) != null) {
                 BigInteger pmcRate = newExchangeRatesPMC.get(PMC_CURRENCY).rate;
                 log.info("PMC rate: " + pmcRate.longValue());
 
@@ -311,7 +307,12 @@ public class ExchangeRatesProvider extends ContentProvider {
                 final Map<String, ExchangeRate> rates = new TreeMap<String, ExchangeRate>();
 
                 log.info("requestPMCRates " + content.toString());
-                final JSONObject o = new JSONObject(content.toString());
+                JSONObject o = new JSONObject(content.toString());
+
+                if(content.toString().contains("PMC/BTC")) {
+                    o = (JSONObject) o.get("PMC/BTC");
+                }
+
                 final String currencyCode = PMC_CURRENCY;
 
                 for (final String field : fields) {
