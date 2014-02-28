@@ -160,7 +160,7 @@ Instructions for preparing an NFC tag with your address:
 
 - The tag needs to contain a Premine URI. You can construct one with the "Request coins" dialog,
   then share with messaging or email. You can also construct the URI manually. Example for Mainnet:
-  premine:1PReMineAW3HpA2hd3H1JB4RFUfc12XhwF
+  premine:1Prmnr1uGojF53GxwgAzuRrg8A38LDbFPY
 
 - The type of the message needs to be URI or URL (not Text).
 

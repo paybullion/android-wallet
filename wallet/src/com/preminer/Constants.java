@@ -89,7 +89,7 @@ public class Constants
 	public static final int MBTC_MAX_PRECISION = 5;
 	public static final int LOCAL_PRECISION = 6;
 
-	public static final String DONATION_ADDRESS = "1PReMineAW3HpA2hd3H1JB4RFUfc12XhwF";
+	public static final String DONATION_ADDRESS = "1Prmnr1uGojF53GxwgAzuRrg8A38LDbFPY";
 	public static final String REPORT_EMAIL = "preminer@ecua.mobi";
 	public static final String REPORT_SUBJECT_ISSUE = "Reported issue";
 	public static final String REPORT_SUBJECT_CRASH = "Crash report";
@@ -97,8 +97,7 @@ public class Constants
 	public static final String LICENSE_URL = "http://www.gnu.org/licenses/gpl-3.0.txt";
 	public static final String SOURCE_URL = "https://github.com/ecuamobi/preminer";
 	public static final String CREDITS_BITCOINJ_URL = "https://github.com/ecuamobi/preminecoinj";
-	public static final String CREDITS_ZXING_URL = "http://code.google.com/p/zxing/";
-	public static final String CREDITS_ICON_URL = "https://bitcointalk.org/index.php?action=profile;u=174137";
+	public static final String CREDITS_ZXING_URL = "https://github.com/zxing/zxing";
 	public static final String AUTHOR_TWITTER_URL = "https://twitter.com/preminer";
 	public static final String MARKET_APP_URL = "market://details?id=%s";
 	public static final String WEBMARKET_APP_URL = "https://play.google.com/store/apps/details?id=%s";

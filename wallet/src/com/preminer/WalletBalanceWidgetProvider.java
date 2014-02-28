@@ -67,7 +67,6 @@ public class WalletBalanceWidgetProvider extends AppWidgetProvider
 		for (final int appWidgetId : appWidgetIds)
 		{
 			final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.wallet_balance_widget_content);
-			views.setTextViewText(R.id.widget_wallet_prefix, config.getPhiPrefix());
 			views.setTextViewText(R.id.widget_wallet_balance, balanceStr);
 			views.setOnClickPendingIntent(R.id.widget_button_balance,
 					PendingIntent.getActivity(context, 0, new Intent(context, WalletActivity.class), 0));

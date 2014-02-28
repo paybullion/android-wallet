@@ -73,7 +73,7 @@
 	<string name="button_add">Přidat</string>
 	<string name="button_delete">Smazat</string>
 	<string name="button_share">Sdílet</string>
-	<string name="button_request_coins">Vyžádat Preminey</string>
-	<string name="button_send_coins">Zaslat Preminey</string>
+	<string name="button_request_coins">Vyžádat</string>
+	<string name="button_send_coins">Zaslat</string>
 
 </resources>

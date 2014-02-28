@@ -101,7 +101,7 @@
 	<string name="button_share">Dela</string>
 	<string name="button_set_as_default">Ange som standard</string>
 	<string name="button_request_coins">Ta emot Premines</string>
-	<string name="button_send_coins">Skicka Premines</string>
+	<string name="button_send_coins">Skicka</string>
 	<string name="button_edit_address">Lägg till/ändra etikett</string>
 	<string name="button_scan">Skanna</string>
 	<string name="button_settings">Inställningar</string>
