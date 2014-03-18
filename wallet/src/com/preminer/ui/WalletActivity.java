@@ -233,6 +233,10 @@ public final class WalletActivity extends AbstractOnDemandServiceActivity
 	{
 		switch (item.getItemId())
 		{
+            case R.id.wallet_options_import_privkey:
+                startActivity(new Intent(this, ImportPrivateKeyActivity.class));
+                return true;
+
 			case R.id.wallet_options_request:
 				handleRequestCoins();
 				return true;

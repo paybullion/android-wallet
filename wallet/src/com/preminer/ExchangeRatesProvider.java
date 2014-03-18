@@ -193,7 +193,10 @@ public class ExchangeRatesProvider extends ContentProvider {
         } else if (selection.equals(KEY_CURRENCY_CODE)) {
             final ExchangeRate rate = bestExchangeRate(selectionArgs[0]);
 
-            cursor.newRow().add(rate.currencyCode.hashCode()).add(rate.currencyCode).add(rate.rate.longValue()).add(rate.source);
+            try
+            {
+                cursor.newRow().add(rate.currencyCode.hashCode()).add(rate.currencyCode).add(rate.rate.longValue()).add(rate.source);
+            } catch (Exception e){}
         }
 
         return cursor;

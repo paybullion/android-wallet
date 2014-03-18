@@ -100,6 +100,8 @@ import com.preminer.R;
  */
 public class BlockchainServiceImpl extends android.app.Service implements BlockchainService
 {
+    private static BlockchainServiceImpl _this;
+
 	private WalletApplication application;
 	private Configuration config;
 
@@ -580,6 +582,8 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 	@Override
 	public void onCreate()
 	{
+        BlockchainServiceImpl._this = this;
+
 		serviceCreatedAt = System.currentTimeMillis();
 		log.debug(".onCreate()");
 
@@ -885,4 +889,20 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 			}
 		}.start();
 	}
+
+    public BlockStore getBlockStore() {
+        return blockStore;
+    }
+
+    public BlockChain getBlockChain() {
+        return blockChain;
+    }
+
+    public PeerGroup getPeerGroup() {
+        return peerGroup;
+    }
+
+    public static BlockchainServiceImpl getInstance() {
+        return BlockchainServiceImpl._this;
+    }
 }

@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Import private key -->
+    <string name="help_import_privkey">
+<![CDATA[
+		<p>
+			This option allows you to import a private key.
+		</p>
+		<p>
+			This can be used to redeem a Paper Wallet or import a Vanity Address.
+		</p>
+		<p>
+			You can create a Paper Wallet (Cold Storage) at <b>Preminer.com</b>.
+		</p>
+		<p>
+			Enter the Private Key you want to import,
+			or touch the camera icon to scan a QR Code.
+			Then, select the option \'Import\'.
+		</p>
+		<p>
+		    <b>Warning</b>
+		    Importing a Private Key requires resetting and reloading the Block Chain.<br/>
+		    This takes several minutes. You won\'t be able to use the Wallet during that time.
+		</p>
+		<p>
+		    You can only import private keys in <b>WIF format</b>
+		    (51 base58 characters, starts with a \'5\')
+		    or BIP38-encrypted WIF keys.
+		</p>
+	]]>
+	</string>
+
 	<string name="help_wallet">
 <![CDATA[
 		<p>
