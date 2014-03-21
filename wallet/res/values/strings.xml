@@ -6,9 +6,14 @@
     <string name="import_privkey_fragment_private_key_hint">type private key to import</string>
     <string name="import_privkey_fragment_bip38">Private key password</string>
     <string name="import_privkey_fragment_bip38_hint">type the BIP38 password</string>
+    <string name="import_privkey_fragment_bip38_required">Please enter the password</string>
+    <string name="import_privkey_fragment_bip38_warning">Decrypting a private key may take more than 1 minute</string>
+    <string name="import_privkey_fragment_bip38_error">Entered password is incorrect. Please check it and try again.</string>
     <string name="import_privkey_button_import">Import</string>
     <string name="import_privkey_fragment_private_key_error">Please check you entered a valid Private Key in WIF format</string>
     <string name="import_privkey_confirm">Importing a Private Key requires resetting and reloading the Block Chain. This takes several minutes.\n\nYou won\'t be able to use the Wallet during that time.</string>
+    <string name="import_privkey_decrypt">Decrypt</string>
+    <string name="import_privkey_decrypting">Decrypting...</string>
 
 	<string name="toast_wallet_reset">Wallet was reset,\nwill take some time to recover</string>
 	<string name="wallet_disclaimer_fragment_remind_safety">Use at your own risk. Read the &lt;u>safety notes&lt;/u>.</string>

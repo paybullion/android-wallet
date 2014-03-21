@@ -363,10 +363,6 @@ public class Bip38 {
         return complete;
     }
 
-    public static SCryptProgress getScryptProgressTracker() {
-        return new SCryptProgress(SCRYPT_N, SCRYPT_R, SCRYPT_P);
-    }
-
     private static void xorBytes(byte[] toApply, byte[] target) {
         if (toApply.length != target.length) {
             throw new RuntimeException();

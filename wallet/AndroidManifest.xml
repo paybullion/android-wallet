@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.preminer"
     android:installLocation="internalOnly"
-    android:versionCode="0334"
-    android:versionName="0.3.34">
+    android:versionCode="0335"
+    android:versionName="0.3.35">
 
     <uses-sdk
         android:minSdkVersion="10"

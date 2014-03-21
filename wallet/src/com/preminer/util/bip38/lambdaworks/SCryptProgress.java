@@ -1,5 +1,7 @@
 package com.preminer.util.bip38.lambdaworks;
 
+import com.preminer.ui.ImportPrivKeyFragment;
+
 import java.io.Serializable;
 
 public class SCryptProgress implements Serializable{
