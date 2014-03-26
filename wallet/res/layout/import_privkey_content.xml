@@ -8,7 +8,7 @@
 
 	<fragment
 		android:id="@+id/send_coins_fragment"
-		android:name="com.preminer.ui.ImportPrivKeyFragment"
+		android:name="com.paybullion.ui.ImportPrivKeyFragment"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content" />
 

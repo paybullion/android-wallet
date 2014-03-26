@@ -8,7 +8,7 @@
 
 	<fragment
 		android:id="@+id/request_coins_fragment"
-		android:name="com.preminer.ui.RequestCoinsFragment"
+		android:name="com.paybullion.ui.RequestCoinsFragment"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content" />
 

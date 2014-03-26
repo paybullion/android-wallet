@@ -4,13 +4,13 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>com.preminer</artifactId>
+	<artifactId>com.paybullion</artifactId>
 	<packaging>apk</packaging>
 	<version>1</version>
-	<name>Preminer</name>
+	<name>Paybullion</name>
 
 	<parent>
-		<groupId>com.preminer</groupId>
+		<groupId>com.paybullion</groupId>
 		<artifactId>base</artifactId>
 		<version>1</version>
 	</parent>
@@ -52,13 +52,13 @@
 		<!-- com.google.bitcoin.* -->
 		<dependency>
 			<groupId>com.google</groupId>
-			<artifactId>preminecoinj</artifactId>
+			<artifactId>paybullionj</artifactId>
             <version>0.11</version>
 		</dependency>
 
 		<!-- com.preminer.integration.android.* -->
 		<dependency>
-			<groupId>com.preminer</groupId>
+			<groupId>com.paybullion</groupId>
 			<artifactId>integration-android</artifactId>
 			<version>1.0</version>
 		</dependency>

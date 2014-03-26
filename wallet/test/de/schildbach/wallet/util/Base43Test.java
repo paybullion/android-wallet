@@ -21,7 +21,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import com.preminer.util.Base43;
+import com.paybullion.util.Base43;
 
 /**
  * @author Andreas Schildbach

@@ -16,8 +16,8 @@
 			android:summary="@string/about_market_app_summary"
 			android:title="@string/about_market_app_title" />
         <Preference
-            android:key="about_preminecoin"
-            android:title="Preminecoin" />
+            android:key="about_paybullion"
+            android:title="Paybullion" />
 		<Preference
 			android:key="about_author_twitter"
 			android:summary="\@preminer"
