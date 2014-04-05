@@ -4,11 +4,11 @@
 	<string name="help_wallet">
 <![CDATA[
 		<p>
-			Po lewej górnej stronie ekranu wyświetlany jest Twój aktualnie wybrany adres Premine, który inne osoby muszą znać żeby wysłać Ci Premine.
+			Po lewej górnej stronie ekranu wyświetlany jest Twój aktualnie wybrany adres PayBullion, który inne osoby muszą znać żeby wysłać Ci PayBullion.
 			Naciśnij żeby, go zmienić.
 		</p>
 		<p>
-			Kod QR po prawej zawiera Twój adres Premine i może zeskanowany przez inną osobę.
+			Kod QR po prawej zawiera Twój adres PayBullion i może zeskanowany przez inną osobę.
 			Naciśnij na kod QR żeby otrzymać jego większą wersje.
 		</p>
 		<p>
@@ -31,18 +31,18 @@
 	<string name="help_request_coins">
 <![CDATA[
 		<p>
-			Przy pomocy tego dialogu, możesz wysłać prośbę o Preminey do innej osoby, tak jakbyś wystawił jej rachunek do zapłacenia. Osoba ta powinna mieć zainstalowany Premine Wallet.
+			Przy pomocy tego dialogu, możesz wysłać prośbę o PayBulliony do innej osoby, tak jakbyś wystawił jej rachunek do zapłacenia. Osoba ta powinna mieć zainstalowany PayBullion Wallet.
 		</p>
 		<p>
-			U góry, wpisz kwotę Premine, o którą chcesz zapytać.
+			U góry, wpisz kwotę PayBullion, o którą chcesz zapytać.
 		</p>
 		<p>
 			Potem osoba wczyta wytworzony kod QR,
 			albo Ty możesz wysłać rachunek za pomocą guzika Opublikuj na listwie menu.
-			Odbiorca będzie musiał otworzyć Premine URL zawarty w wysłanej wiadomości.
+			Odbiorca będzie musiał otworzyć PayBullion URL zawarty w wysłanej wiadomości.
 		</p>
 		<p>
-			Osoba, która otrzymała wysłane zapytanie otrzyma gotowy i wypełniony formularz wysyłania Premineów.
+			Osoba, która otrzymała wysłane zapytanie otrzyma gotowy i wypełniony formularz wysyłania PayBullionów.
 			Jedyne co będzie musiała zrobić to potwierdzenie transakcji.
 		</p>
 	]]>
@@ -51,15 +51,15 @@
 <![CDATA[
 		<p>
 			Zainicjowałeś proces wysyłania monet.
-			Przyszedłeś tutaj przez główny ekran albo naciskając na Premine URL w Twojej mobilnej przeglądarce.
+			Przyszedłeś tutaj przez główny ekran albo naciskając na PayBullion URL w Twojej mobilnej przeglądarce.
 		</p>
 		<p>
-			Wpisz adres Premine na który ma wpłynąć zapłata.
+			Wpisz adres PayBullion na który ma wpłynąć zapłata.
 			Wyświetlone zostaną podpowiedzi adresu z danych Twojej książki adresowej.
-			Możesz też skanować kody QR z adresami Premine albo zapytaniami Premine naciskając guzik QR w menu.
+			Możesz też skanować kody QR z adresami PayBullion albo zapytaniami PayBullion naciskając guzik QR w menu.
 		</p>
 		<p>
-			Poniżej widzisz ile Premine możesz wydać w tym momencie.
+			Poniżej widzisz ile PayBullion możesz wydać w tym momencie.
 			Rożnica ze stanem konta na głównym ekranie wynika z jeszcze nie potwierdzonych monet, które nie mogą jeszcze zostać wydane.
 		</p>
 		<p>
@@ -80,20 +80,20 @@
 	<string name="help_safety">
 <![CDATA[
 		<p>
-			<b>Pare słów o bezpieczeństwie twoich Premine:</b>
+			<b>Pare słów o bezpieczeństwie twoich PayBullion:</b>
 		</p>
 		<p>
-			Premine w Premine Wallet są magazynowane na urządzeniu.
-			<b>Jak zgubisz swoje urządzenie, zgubisz też swój portfel i Preminey.</b>
+			PayBullion w PayBullion Wallet są magazynowane na urządzeniu.
+			<b>Jak zgubisz swoje urządzenie, zgubisz też swój portfel i PayBulliony.</b>
 			Zupełnie jak pieniądze w Twoim fizycznym portfelu.
 		</p>
 		<p>
-			<b>Zanim odinstalujesz Premine Wallet</b> (albo wymażesz dane aplikacji/wyczyścisz swoje urządzenie), <b>przetransferuj twoje Premine na inny portfel</b>.
-			Każdy pozostały Premine będzie stracony.
+			<b>Zanim odinstalujesz PayBullion Wallet</b> (albo wymażesz dane aplikacji/wyczyścisz swoje urządzenie), <b>przetransferuj twoje PayBullion na inny portfel</b>.
+			Każdy pozostały PayBullion będzie stracony.
 		</p>
 		<p>
 			<b>Żadne transakcje nie mogą zostać cofnięte</b>.
-			Jeżeli wyślesz swoje Preminey, nie będzie już możliwości żeby je odzyskać, dopóki nie znasz odbiorcy, który musi godzić się na ich odesłanie.
+			Jeżeli wyślesz swoje PayBulliony, nie będzie już możliwości żeby je odzyskać, dopóki nie znasz odbiorcy, który musi godzić się na ich odesłanie.
 		</p>
 		<p>
 			<b>Uważaj na swoje urządzenie Android!</b>
@@ -102,7 +102,7 @@
 		</p>
 		<p>
 			Utrzymuj niskie ryzyko!
-			<b>Używaj Premine Wallet do przetrzymywania jedynie małych ilości Premine</b> do użytku codziennego.
+			<b>Używaj PayBullion Wallet do przetrzymywania jedynie małych ilości PayBullion</b> do użytku codziennego.
 		</p>
 	]]>
 	</string>

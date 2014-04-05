@@ -84,13 +84,6 @@
         </activity-alias>
 
         <activity
-            android:name="com.paybullion.ui.ImportPrivateKeyActivity"
-            android:configChanges="keyboard|keyboardHidden"
-            android:label="@string/import_privkey_title"
-            android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
             android:name="com.paybullion.ui.SendCoinsActivity"
             android:configChanges="keyboard|keyboardHidden"
             android:label="@string/send_coins_activity_title"
@@ -99,7 +92,7 @@
             <intent-filter android:label="@string/send_coins_activity_title">
                 <action android:name="android.intent.action.VIEW" />
 
-                <data android:scheme="premine" />
+                <data android:scheme="paybullion" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -107,21 +100,21 @@
             <intent-filter android:label="@string/send_coins_activity_title">
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-                <data android:scheme="premine" />
+                <data android:scheme="paybullion" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter android:label="@string/send_coins_activity_title">
                 <action android:name="android.intent.action.VIEW" />
 
-                <data android:mimeType="application/premine-paymentrequest" />
+                <data android:mimeType="application/paybullion-paymentrequest" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter android:label="@string/send_coins_activity_title">
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
-                <data android:mimeType="application/premine-paymentrequest" />
+                <data android:mimeType="application/paybullion-paymentrequest" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -168,7 +161,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:mimeType="x-premine/private-keys" />
+                <data android:mimeType="x-paybullion/private-keys" />
                 <data android:mimeType="application/octet-stream" />
             </intent-filter>
         </activity>
@@ -191,7 +184,7 @@
 
         <receiver
             android:name="com.paybullion.WalletBalanceWidgetProvider"
-            android:label="Premine Wallet Balance">
+            android:label="PayBullion Wallet Balance">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

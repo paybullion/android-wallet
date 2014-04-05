@@ -140,8 +140,8 @@ public final class BitcoinIntegration
 
 	private static Intent makeIntent(final String address, final Long amount)
 	{
-        // PMC
-		final StringBuilder uri = new StringBuilder("premine:");
+        // PBC
+		final StringBuilder uri = new StringBuilder("paybullion:");
 		if (address != null)
 			uri.append(address);
 		if (amount != null)
@@ -174,8 +174,8 @@ public final class BitcoinIntegration
 	{
 		Toast.makeText(context, "No Bitcoin application found.\nPlease install Bitcoin Wallet.", Toast.LENGTH_LONG).show();
 
-		final Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.preminer"));
-		final Intent binaryIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://premineco.in"));
+		final Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.paybullion"));
+		final Intent binaryIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://paybullion.com"));
 
 		final PackageManager pm = context.getPackageManager();
 		if (pm.resolveActivity(marketIntent, 0) != null)

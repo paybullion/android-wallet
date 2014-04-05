@@ -4,16 +4,16 @@
 	<string name="help_wallet">
 <![CDATA[
 		<p>
-			V ľavej hornej časti obrazovky je Vaša aktuálna Premine adresa, túto adresu potrebuje poznať odosielateľ, aby Vám mohol poslať Preminey.
+			V ľavej hornej časti obrazovky je Vaša aktuálna PayBullion adresa, túto adresu potrebuje poznať odosielateľ, aby Vám mohol poslať PayBulliony.
 			Kliknutím na adresu ju môžte zmeniť.
 		</p>
 		<p>
-			QR kód na pravej strane obsahuje Vašu Premine adresu, odosielateľ ho môže jednoducho naskenovať.
+			QR kód na pravej strane obsahuje Vašu PayBullion adresu, odosielateľ ho môže jednoducho naskenovať.
 			Kliknite na QR kód, aby ste ho zväčšili.
 		</p>
 		<p>
 			V strede obrazovky je zobrazený aktuálny zostatok.
-			Hodnota Vašich Premineov je zobrazená aj v inej zvolenej mene.
+			Hodnota Vašich PayBullionov je zobrazená aj v inej zvolenej mene.
 			Kliknutím na zostatok zobrazíte zoznam cudzích mien, následným kliknutím na menu ju môžte nastaviť ako predvolenú.
 		</p>
 		<p>
@@ -23,7 +23,7 @@
 			Ťahom vľavo a vpravo môžte filtrovať prijaté a odoslané platby.
 		</p>
 		<p>
-			Kliknutím na tlačidlá naspodku môžte poslať alebo vyžiadať Preminey.
+			Kliknutím na tlačidlá naspodku môžte poslať alebo vyžiadať PayBulliony.
 			Ďalšie možnosti sú v ponuke nastavení.
 		</p>
 	]]>
@@ -31,18 +31,18 @@
 	<string name="help_request_coins">
 <![CDATA[
 		<p>
-			Na tejto obrazovke môžete vyžiadať Preminey od niekoho iného (kto má nainštalovanú aplikáciu Premine Wallet).
+			Na tejto obrazovke môžete vyžiadať PayBulliony od niekoho iného (kto má nainštalovanú aplikáciu PayBullion Wallet).
 		</p>
 		<p>
-			Najprv zadajte sumu Premineov, ktoré chcete vyžiadať.
+			Najprv zadajte sumu PayBullionov, ktoré chcete vyžiadať.
 		</p>
 		<p>
 			Potom dajte druhej strane naskenovať vygenerovaný QR kód
 			alebo môžte svoju žiadosť poslať použitím tlačidla zdieľať.
-			Druhá strana potom klikne na Premine URL.
+			Druhá strana potom klikne na PayBullion URL.
 		</p>
 		<p>
-			V oboch prípadoch druhá strana uvidí predvyplnenú obrazovku na odosielanie Premineov.
+			V oboch prípadoch druhá strana uvidí predvyplnenú obrazovku na odosielanie PayBullionov.
 			Ak s transakciou súhlasí, tak ju iba potvrdí.
 		</p>
 	]]>
@@ -50,17 +50,17 @@
 	<string name="help_send_coins">
 <![CDATA[
 		<p>
-			Práve ste začali proces odosielania Premineov.
-			Dostali ste sa sem z hlavnej obrazovky alebo kliknutím na Premine adresu v prehliadači.
+			Práve ste začali proces odosielania PayBullionov.
+			Dostali ste sa sem z hlavnej obrazovky alebo kliknutím na PayBullion adresu v prehliadači.
 		</p>
 		<p>
 			Najprv zadajte adresu, na ktorú chcete odoslať platbu.
 			Ak sa adresa nachádza v adresári, tak sa automaticky doplní.
-			Kliknutím na ikonu fotoaparátu môžete naskenovať QR kód s Premine adresou alebo požiadavkou na zaplatenie.
+			Kliknutím na ikonu fotoaparátu môžete naskenovať QR kód s PayBullion adresou alebo požiadavkou na zaplatenie.
 		</p>
 		<p>
-			Ďalej vidíte koľko Premineov môžete aktuálne minúť.
-			Rozdiel medzi zostatkom na hlavnej obrazovke a počtom Premineov, ktoré môžete minúť tvoria nepotvrdené transakcie.
+			Ďalej vidíte koľko PayBullionov môžete aktuálne minúť.
+			Rozdiel medzi zostatkom na hlavnej obrazovke a počtom PayBullionov, ktoré môžete minúť tvoria nepotvrdené transakcie.
 		</p>
 		<p>
 			Nakoniec zadajte sumu platby.
@@ -83,8 +83,8 @@
 			<b>Dôležité informácie o bezpečnosti:</b>
 		</p>
 		<p>
-			Preminey sú uložené na Vašom zariadení.
-			<b>Ak zariadenie stratíte, prídete o všetky svoje Preminey.</b>
+			PayBulliony sú uložené na Vašom zariadení.
+			<b>Ak zariadenie stratíte, prídete o všetky svoje PayBulliony.</b>
 		</p>
 		<p>
 			To znamená, že by ste mali <b>zálohovať svoju peňaženku</b>!
@@ -92,12 +92,12 @@
 			Svoju zálohu bezpečne uchovajte a nezabudnite heslo.
 		</p>
 		<p>
-			<b>Pred odinštalovaním</b> (alebo vymazaním dát/obnovením továrenských nastavení), <b>odošlite svoje Preminey do inej peňaženky</b>.
-			Inak o svoje Preminey prídete.
+			<b>Pred odinštalovaním</b> (alebo vymazaním dát/obnovením továrenských nastavení), <b>odošlite svoje PayBulliony do inej peňaženky</b>.
+			Inak o svoje PayBulliony prídete.
 		</p>
 		<p>
 			<b>Platby sa nedajú stornovať</b>.
-			Ak pošlete svoje Preminey na nesprávnu adresu, je takmer nemožné získať ich späť.
+			Ak pošlete svoje PayBulliony na nesprávnu adresu, je takmer nemožné získať ich späť.
 		</p>
 		<p>
 			<b>Chráňte si svoje zariadenie!</b>

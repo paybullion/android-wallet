@@ -44,7 +44,7 @@ public class Constants
 	public static final String WALLET_KEY_BACKUP_BASE58 = "key-backup-base58" + FILENAME_NETWORK_SUFFIX;
 
 	public static final File EXTERNAL_WALLET_BACKUP_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-	public static final String EXTERNAL_WALLET_KEY_BACKUP = "premine-wallet-keys" + FILENAME_NETWORK_SUFFIX;
+	public static final String EXTERNAL_WALLET_KEY_BACKUP = "paybullion-wallet-keys" + FILENAME_NETWORK_SUFFIX;
 
 	public static final String BLOCKCHAIN_FILENAME = "blockchain" + FILENAME_NETWORK_SUFFIX;
 
@@ -56,24 +56,24 @@ public class Constants
 	public static final String EXPLORE_BASE_URL = NETWORK_PARAMETERS.getId().equals(NetworkParameters.ID_MAINNET) ? EXPLORE_BASE_URL_PROD
 			: EXPLORE_BASE_URL_TEST;
 
-	public static final String MIMETYPE_PAYMENTREQUEST = "application/premine-paymentrequest"; // BIP 71
-	public static final String MIMETYPE_PAYMENT = "application/premine-payment"; // BIP 71
-	public static final String MIMETYPE_PAYMENTACK = "application/premine-paymentack"; // BIP 71
-	public static final String MIMETYPE_TRANSACTION = "application/x-pmctx";
+	public static final String MIMETYPE_PAYMENTREQUEST = "application/paybullion-paymentrequest"; // BIP 71
+	public static final String MIMETYPE_PAYMENT = "application/paybullion-payment"; // BIP 71
+	public static final String MIMETYPE_PAYMENTACK = "application/paybullion-paymentack"; // BIP 71
+	public static final String MIMETYPE_TRANSACTION = "application/x-pbctx";
 
 	public static final int MAX_NUM_CONFIRMATIONS = 7;
-	public static final String USER_AGENT = "preminer";
+	public static final String USER_AGENT = "paybullion";
 	public static final String DEFAULT_EXCHANGE_CURRENCY = "USD";
 	public static final int WALLET_OPERATION_STACK_SIZE = 256 * 1024;
 	public static final long BLOCKCHAIN_STATE_BROADCAST_THROTTLE_MS = DateUtils.SECOND_IN_MILLIS;
 	public static final long BLOCKCHAIN_UPTODATE_THRESHOLD_MS = DateUtils.HOUR_IN_MILLIS;
 
-	public static final String CURRENCY_CODE_BTC = "PMC";
-	public static final String CURRENCY_CODE_MBTC = "mPMC";
+	public static final String CURRENCY_CODE_BTC = "PBC";
+	public static final String CURRENCY_CODE_MBTC = "mPBC";
 
-    // PMC
-    public static final String CURRENCY_CODE_PHI = "φ";
-    public static final String CURRENCY_CODE_MPHI = "mφ";
+    // PBC
+    public static final String CURRENCY_CODE_PHI = "₱";
+    public static final String CURRENCY_CODE_MPHI = "m₱";
 
 	public static final char CHAR_HAIR_SPACE = '\u200a';
 	public static final char CHAR_THIN_SPACE = '\u2009';
@@ -90,7 +90,7 @@ public class Constants
 	public static final int LOCAL_PRECISION = 6;
 
 	public static final String DONATION_ADDRESS = "1Prmnr1uGojF53GxwgAzuRrg8A38LDbFPY";
-	public static final String REPORT_EMAIL = "preminer@ecua.mobi";
+	public static final String REPORT_EMAIL = "paybullion@ecua.mobi";
 	public static final String REPORT_SUBJECT_ISSUE = "Reported issue";
 	public static final String REPORT_SUBJECT_CRASH = "Crash report";
 
@@ -98,14 +98,13 @@ public class Constants
 	public static final String SOURCE_URL = "https://github.com/paybullion/android-wallet";
 	public static final String CREDITS_BITCOINJ_URL = "https://github.com/paybullion/paybullionj";
 	public static final String CREDITS_ZXING_URL = "https://github.com/zxing/zxing";
-	public static final String AUTHOR_TWITTER_URL = "https://twitter.com/preminer";
+	public static final String AUTHOR_TWITTER_URL = "https://twitter.com/paybullion";
 	public static final String MARKET_APP_URL = "market://details?id=%s";
 	public static final String WEBMARKET_APP_URL = "https://play.google.com/store/apps/details?id=%s";
-	public static final String MARKET_PUBLISHER_URL = "market://search?q=pub:\"EcuaMobi\"";
-    // PMC
-    public static final String PREMINECOIN_URL = "http://paybullion.com/";
+    // PBC
+    public static final String PAYBULLION_URL = "http://paybullion.com/";
 
-    // PMC
+    // PBC
 	//public static final String VERSION_URL = "http://wallet.schildbach.de/version";
 	public static final int HTTP_TIMEOUT_MS = 15 * (int) DateUtils.SECOND_IN_MILLIS;
 

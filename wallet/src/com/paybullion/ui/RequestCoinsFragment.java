@@ -389,7 +389,7 @@ public final class RequestCoinsFragment extends SherlockFragment
 		final int size = (int) (256 * getResources().getDisplayMetrics().density);
 		final String qrContent;
 		if (config.getQrPaymentRequestEnabled())
-			qrContent = "PREMINE:-" + Qr.encodeBinary(paymentRequest);
+			qrContent = "PAYBULLION:-" + Qr.encodeBinary(paymentRequest);
 		else
 			qrContent = bitcoinRequest;
 		qrCodeBitmap = Qr.bitmap(qrContent, size);

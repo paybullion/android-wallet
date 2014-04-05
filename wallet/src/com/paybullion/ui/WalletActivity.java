@@ -229,10 +229,6 @@ public final class WalletActivity extends AbstractOnDemandServiceActivity
 	{
 		switch (item.getItemId())
 		{
-            case R.id.wallet_options_import_privkey:
-                startActivity(new Intent(this, ImportPrivateKeyActivity.class));
-                return true;
-
 			case R.id.wallet_options_request:
 				handleRequestCoins();
 				return true;
@@ -571,14 +567,14 @@ public final class WalletActivity extends AbstractOnDemandServiceActivity
 	{
 		final PackageInfo packageInfo = getWalletApplication().packageInfo();
 		final int versionNameSplit = packageInfo.versionName.indexOf('-');
-		// PMC
+		// PBC
         // Removed BTC wallet version check
 
 		if (!config.hasBtcPrecision()
 				&& config.changeLogVersionCodeCrossed(application.packageInfo().versionCode, DEFAULT_PRECISION_CHANGE_VERSION_CODE))
 		{
-            // PMC
-            // Don't show this dialog for PMC, at least not until PMC > $100
+            // PBC
+            // Don't show this dialog for PBC
 			//showDialog(DIALOG_CHANGELOG);
 		}
 		else if (CrashReporter.hasSavedCrashTrace())

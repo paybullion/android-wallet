@@ -97,7 +97,7 @@ public class Configuration
 		return getBtcShift() == 0 ? Constants.CURRENCY_CODE_BTC : Constants.CURRENCY_CODE_MBTC;
 	}
 
-    // PMC
+    // PBC
     public String getPhiPrefix()
     {
         return getBtcShift() == 0 ? Constants.CURRENCY_CODE_PHI : Constants.CURRENCY_CODE_MPHI;

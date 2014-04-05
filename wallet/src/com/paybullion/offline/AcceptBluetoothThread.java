@@ -291,7 +291,7 @@ public abstract class AcceptBluetoothThread extends Thread
 	{
 		try
 		{
-			return adapter.listenUsingInsecureRfcommWithServiceRecord("Premine Transaction Submission", uuid);
+			return adapter.listenUsingInsecureRfcommWithServiceRecord("PayBullion Transaction Submission", uuid);
 		}
 		catch (final IOException x)
 		{

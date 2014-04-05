@@ -17,6 +17,27 @@
 
 package com.paybullion;
 
+import android.content.ContentProvider;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.net.Uri;
+import android.preference.PreferenceManager;
+import android.provider.BaseColumns;
+import android.text.format.DateUtils;
+
+import com.google.bitcoin.core.Utils;
+import com.paybullion.util.GenericUtils;
+import com.paybullion.util.Io;
+
+import org.json.JSONObject;
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -40,23 +61,6 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
-
-import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import android.content.ContentProvider;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.MatrixCursor;
-import android.net.Uri;
-import android.preference.PreferenceManager;
-import android.provider.BaseColumns;
-import android.text.format.DateUtils;
-
-import com.google.bitcoin.core.Utils;
-import com.paybullion.util.GenericUtils;
-import com.paybullion.util.Io;
 
 /**
  * @author Andreas Schildbach
@@ -97,21 +101,19 @@ public class ExchangeRatesProvider extends ContentProvider {
     private static final String[] BITCOINCHARTS_FIELDS = new String[]{"24h", "7d", "30d"};
     private static final URL BLOCKCHAININFO_URL;
     private static final String[] BLOCKCHAININFO_FIELDS = new String[]{"15m"};
-    // PMC
-    private static final String PMC_CURRENCY = "PMC";
-    private static final URL POLONIEX_URL;
-    private static final String[] POLONIEX_FIELDS = new String[]{"BTC_PMC"};
-    private static final URL CRYPTORUSH_URL;
-    private static final String[] CRYPTORUSH_FIELDS = new String[]{"last_trade"};
+    // PBC
+    private static final String PMC_CURRENCY = "PBC";
+    private static final URL GOLD_URL;
+    private static final String GOLD_USER = "paybullion@grr.la";
+    private static final String GOLD_PASSWORD = "f7yhdye8fijckl  ";
 
     static {
         try {
             BITCOINAVERAGE_URL = new URL("https://api.bitcoinaverage.com/ticker/global/all");
             BITCOINCHARTS_URL = new URL("http://api.bitcoincharts.com/v1/weighted_prices.json");
             BLOCKCHAININFO_URL = new URL("https://blockchain.info/ticker");
-            // PMC
-            POLONIEX_URL = new URL("https://poloniex.com/public?command=returnTicker");
-            CRYPTORUSH_URL = new URL("https://cryptorush.in/api.php?get=market&m=pmc&b=btc&key=" + CRYPTORUSH_KEY + "&id=" + CRYPTORUSH_ID + "&json=true");
+            // PBC
+            GOLD_URL = new URL("http://www.freewebservicesx.com/GetGoldPrice.asmx?WSDL");
         } catch (final MalformedURLException x) {
             throw new RuntimeException(x); // cannot happen
         }
@@ -143,30 +145,24 @@ public class ExchangeRatesProvider extends ContentProvider {
         final long now = System.currentTimeMillis();
 
         if (lastUpdated == 0 || now - lastUpdated > UPDATE_FREQ_MS) {
-            // PMC
-            // First, we need the BTC<->PMC parity
-            Map<String, ExchangeRate> newExchangeRatesPMC = null;
-            URL pmcURL = POLONIEX_URL;
-            newExchangeRatesPMC = requestPMCRates(pmcURL, POLONIEX_FIELDS);
-            if(newExchangeRatesPMC == null || newExchangeRatesPMC.get(PMC_CURRENCY) == null)
-            {
-                pmcURL = CRYPTORUSH_URL;
-                newExchangeRatesPMC = requestPMCRates(pmcURL, CRYPTORUSH_FIELDS);
-            }
+            // PBC
+            // First, we need the USD<->PBC parity
+            BigInteger gold = new BigInteger("0");
+
+            getGoldRate();
 
             Map<String, ExchangeRate> newExchangeRates = null;
-            // PMC
-            // We can continue only if we have the PMC rate
-            if (newExchangeRatesPMC != null && newExchangeRatesPMC.get(PMC_CURRENCY) != null) {
-                BigInteger pmcRate = newExchangeRatesPMC.get(PMC_CURRENCY).rate;
-                log.info("PMC rate: " + pmcRate.longValue());
+            // PBC
+            // We can continue only if we have the PBC rate
+            if (0 != gold.doubleValue()) {
+                log.info("PBC rate: " + gold);
 
                 if (newExchangeRates == null)
-                    newExchangeRates = requestExchangeRates(BITCOINAVERAGE_URL, pmcRate, pmcURL, BITCOINAVERAGE_FIELDS);
+                    newExchangeRates = requestExchangeRates(BITCOINAVERAGE_URL, gold, GOLD_URL, BITCOINAVERAGE_FIELDS);
                 if (newExchangeRates == null)
-                    newExchangeRates = requestExchangeRates(BITCOINCHARTS_URL, pmcRate, pmcURL, BITCOINCHARTS_FIELDS);
+                    newExchangeRates = requestExchangeRates(BITCOINCHARTS_URL, gold, GOLD_URL, BITCOINCHARTS_FIELDS);
                 if (newExchangeRates == null)
-                    newExchangeRates = requestExchangeRates(BLOCKCHAININFO_URL, pmcRate, pmcURL, BLOCKCHAININFO_FIELDS);
+                    newExchangeRates = requestExchangeRates(BLOCKCHAININFO_URL, gold, GOLD_URL, BLOCKCHAININFO_FIELDS);
             }
 
             if (newExchangeRates != null) {
@@ -192,10 +188,10 @@ public class ExchangeRatesProvider extends ContentProvider {
         } else if (selection.equals(KEY_CURRENCY_CODE)) {
             final ExchangeRate rate = bestExchangeRate(selectionArgs[0]);
 
-            try
-            {
+            try {
                 cursor.newRow().add(rate.currencyCode.hashCode()).add(rate.currencyCode).add(rate.rate.longValue()).add(rate.source);
-            } catch (Exception e){}
+            } catch (Exception e) {
+            }
         }
 
         return cursor;
@@ -251,6 +247,28 @@ public class ExchangeRatesProvider extends ContentProvider {
         throw new UnsupportedOperationException();
     }
 
+    // PBC
+    private BigInteger getGoldRate() {
+        SoapObject request = new SoapObject("http://freewebservicesx.com/", "GetCurrentGoldPrice");
+
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.dotNet = true;
+        envelope.setOutputSoapObject(request);
+        HttpTransportSE httpTransport = new HttpTransportSE("http://www.freewebservicesx.com/GetGoldPrice.asmx");
+
+        try
+        {
+            httpTransport.call("http://freewebservicesx.com/GetCurrentGoldPrice", envelope);
+            Object response = envelope.getResponse();
+            log.error("Response", response.toString());
+        } catch (Exception exception)
+        {
+            exception.printStackTrace();
+        }
+
+        return new BigInteger("0");
+    }
+
     // PMC
     private static Map<String, ExchangeRate> requestPMCRates(final URL url, final String... fields) {
         log.info("requestPMCRates " + url.toString());
@@ -260,8 +278,7 @@ public class ExchangeRatesProvider extends ContentProvider {
         Reader reader = null;
 
         try {
-            if(url.toString().contains("https://"))
-            {
+            if (url.toString().contains("https://")) {
                 // Ignore HTTPS errors: Begin
                 TrustManagerFactory tmf = TrustManagerFactory.getInstance(
                         TrustManagerFactory.getDefaultAlgorithm());
@@ -290,8 +307,7 @@ public class ExchangeRatesProvider extends ContentProvider {
                 // Ignore HTTPS errors: End
 
                 connection = (HttpsURLConnection) url.openConnection();
-            } else
-            {
+            } else {
                 connection = (HttpURLConnection) url.openConnection();
             }
 
@@ -311,7 +327,7 @@ public class ExchangeRatesProvider extends ContentProvider {
                 log.info("requestPMCRates " + content.toString());
                 JSONObject o = new JSONObject(content.toString());
 
-                if(content.toString().contains("PMC/BTC")) {
+                if (content.toString().contains("PMC/BTC")) {
                     o = (JSONObject) o.get("PMC/BTC");
                 }
 

@@ -148,7 +148,7 @@ public final class ExchangeRatesFragment extends SherlockListFragment implements
 			public boolean onPrepareActionMode(final ActionMode mode, final Menu menu)
 			{
 				mode.setTitle(exchangeRate.currencyCode);
-                // PMC
+                // PBC
 				//mode.setSubtitle(getString(R.string.exchange_rates_fragment_source, exchangeRate.source));
                 mode.setSubtitle("BTC".equals(exchangeRate.currencyCode) ? "Bitcoin" : "");
 

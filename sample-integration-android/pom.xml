@@ -10,7 +10,7 @@
 	<name>Sample for Bitcoin Integration for Android</name>
 
 	<parent>
-		<groupId>com.preminer</groupId>
+		<groupId>com.paybullion</groupId>
 		<artifactId>base</artifactId>
 		<version>1</version>
 	</parent>

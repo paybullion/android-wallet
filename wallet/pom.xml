@@ -56,7 +56,7 @@
             <version>0.11</version>
 		</dependency>
 
-		<!-- com.preminer.integration.android.* -->
+		<!-- com.paybullion.integration.android.* -->
 		<dependency>
 			<groupId>com.paybullion</groupId>
 			<artifactId>integration-android</artifactId>

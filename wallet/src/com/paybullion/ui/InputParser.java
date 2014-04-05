@@ -77,7 +77,7 @@ public abstract class InputParser
 		@Override
 		public void parse()
 		{
-			if (input.startsWith("PREMINE:-"))
+			if (input.startsWith("PAYBULLION:-"))
 			{
 				try
 				{
@@ -94,7 +94,7 @@ public abstract class InputParser
 					error(R.string.input_parser_io_error, x.getMessage());
 				}
 			}
-			else if (input.startsWith("premine:"))
+			else if (input.startsWith("paybullion:"))
 			{
 				try
 				{
@@ -111,7 +111,7 @@ public abstract class InputParser
 				}
 				catch (final BitcoinURIParseException x)
 				{
-					error(R.string.input_parser_invalid_premine_uri, input);
+					error(R.string.input_parser_invalid_PayBullion_uri, input);
 				}
 			}
 			else if (PATTERN_BITCOIN_ADDRESS.matcher(input).matches())
