@@ -33,6 +33,7 @@ import com.paybullion.util.Io;
 import org.json.JSONObject;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 import org.slf4j.Logger;
@@ -40,6 +41,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.math.BigInteger;
@@ -48,11 +50,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.KeyStore;
 import java.security.cert.X509Certificate;
+import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.zip.GZIPInputStream;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
@@ -74,7 +78,7 @@ public class ExchangeRatesProvider extends ContentProvider {
         }
 
         public final String currencyCode;
-        public final BigInteger rate;
+        public BigInteger rate;
         public final String source;
 
         @Override
@@ -92,8 +96,6 @@ public class ExchangeRatesProvider extends ContentProvider {
     @CheckForNull
     private Map<String, ExchangeRate> exchangeRates = null;
     private long lastUpdated = 0;
-    private static final String CRYPTORUSH_KEY = "3df658c1c024cdd0190271a5f0e9e6bb1b2880fd";
-    private static final String CRYPTORUSH_ID = "14272";
 
     private static final URL BITCOINAVERAGE_URL;
     private static final String[] BITCOINAVERAGE_FIELDS = new String[]{"24h_avg", "last"};
@@ -103,23 +105,23 @@ public class ExchangeRatesProvider extends ContentProvider {
     private static final String[] BLOCKCHAININFO_FIELDS = new String[]{"15m"};
     // PBC
     private static final String PMC_CURRENCY = "PBC";
-    private static final URL GOLD_URL;
     private static final String GOLD_USER = "paybullion@grr.la";
-    private static final String GOLD_PASSWORD = "f7yhdye8fijckl  ";
+    private static final String GOLD_PASSWORD = "f7yhdye8fijckl";
 
     static {
         try {
             BITCOINAVERAGE_URL = new URL("https://api.bitcoinaverage.com/ticker/global/all");
             BITCOINCHARTS_URL = new URL("http://api.bitcoincharts.com/v1/weighted_prices.json");
             BLOCKCHAININFO_URL = new URL("https://blockchain.info/ticker");
-            // PBC
-            GOLD_URL = new URL("http://www.freewebservicesx.com/GetGoldPrice.asmx?WSDL");
         } catch (final MalformedURLException x) {
             throw new RuntimeException(x); // cannot happen
         }
     }
 
-    private static final long UPDATE_FREQ_MS = 10 * DateUtils.MINUTE_IN_MILLIS;
+    // PBC
+    // Gold doesn't change its price as often as BTC
+    // Query every 6h instead
+    private static final long UPDATE_FREQ_MS = 6 * 60 * DateUtils.MINUTE_IN_MILLIS;
 
     private static final Logger log = LoggerFactory.getLogger(ExchangeRatesProvider.class);
 
@@ -145,33 +147,55 @@ public class ExchangeRatesProvider extends ContentProvider {
         final long now = System.currentTimeMillis();
 
         if (lastUpdated == 0 || now - lastUpdated > UPDATE_FREQ_MS) {
-            // PBC
-            // First, we need the USD<->PBC parity
-            BigInteger gold = new BigInteger("0");
+            try {
+                // PBC
+                // First, we need the USD<->PBC(gold) parity
+                double doubleGoldRate = getGoldRate();
 
-            getGoldRate();
+                log.info("Gold Rate: " + doubleGoldRate);
 
-            Map<String, ExchangeRate> newExchangeRates = null;
-            // PBC
-            // We can continue only if we have the PBC rate
-            if (0 != gold.doubleValue()) {
-                log.info("PBC rate: " + gold);
+                if (0 == doubleGoldRate) {
+                    return null;
+                }
+
+                BigInteger goldRate = GenericUtils.toNanoCoins(String.valueOf(doubleGoldRate), 0);
+
+                Map<String, ExchangeRate> newExchangeRates = null;
+
+                final String userAgent = "PayBullion Android Wallet";
 
                 if (newExchangeRates == null)
-                    newExchangeRates = requestExchangeRates(BITCOINAVERAGE_URL, gold, GOLD_URL, BITCOINAVERAGE_FIELDS);
+                    newExchangeRates = requestExchangeRates(BITCOINAVERAGE_URL, userAgent, "", BITCOINAVERAGE_FIELDS);
                 if (newExchangeRates == null)
-                    newExchangeRates = requestExchangeRates(BITCOINCHARTS_URL, gold, GOLD_URL, BITCOINCHARTS_FIELDS);
+                    newExchangeRates = requestExchangeRates(BITCOINCHARTS_URL, userAgent, "", BITCOINCHARTS_FIELDS);
                 if (newExchangeRates == null)
-                    newExchangeRates = requestExchangeRates(BLOCKCHAININFO_URL, gold, GOLD_URL, BLOCKCHAININFO_FIELDS);
-            }
+                    newExchangeRates = requestExchangeRates(BLOCKCHAININFO_URL, userAgent, "", BLOCKCHAININFO_FIELDS);
 
-            if (newExchangeRates != null) {
-                exchangeRates = newExchangeRates;
-                lastUpdated = now;
+                if (newExchangeRates != null) {
+                    // PBC
+                    // Get BTC<->USD value
+                    ExchangeRate usdRate = newExchangeRates.get("USD");
 
-                final ExchangeRate exchangeRateToCache = bestExchangeRate(config.getExchangeCurrencyCode());
-                if (exchangeRateToCache != null)
-                    config.setCachedExchangeRate(exchangeRateToCache);
+                    final BigInteger nano = new BigInteger("1000000000");
+
+                    BigInteger adjustRate = nano.multiply(goldRate).divide(usdRate.rate);
+
+                    // Adjust all prices
+                    for (String key : newExchangeRates.keySet()) {
+                        ExchangeRate rate = newExchangeRates.get(key);
+                        rate.rate = rate.rate.multiply(adjustRate).divide(nano);
+                        newExchangeRates.put(key, rate);
+                    }
+
+                    exchangeRates = newExchangeRates;
+                    lastUpdated = now;
+
+                    final ExchangeRate exchangeRateToCache = bestExchangeRate(config.getExchangeCurrencyCode());
+                    if (exchangeRateToCache != null)
+                        config.setCachedExchangeRate(exchangeRateToCache);
+                }
+            } catch (Exception e) {
+                return null;
             }
         }
 
@@ -248,134 +272,34 @@ public class ExchangeRatesProvider extends ContentProvider {
     }
 
     // PBC
-    private BigInteger getGoldRate() {
+    private double getGoldRate() {
         SoapObject request = new SoapObject("http://freewebservicesx.com/", "GetCurrentGoldPrice");
+
+        request.addProperty("UserName", GOLD_USER);
+        request.addProperty("Password", GOLD_PASSWORD);
 
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.dotNet = true;
         envelope.setOutputSoapObject(request);
         HttpTransportSE httpTransport = new HttpTransportSE("http://www.freewebservicesx.com/GetGoldPrice.asmx");
 
-        try
-        {
+        try {
             httpTransport.call("http://freewebservicesx.com/GetCurrentGoldPrice", envelope);
-            Object response = envelope.getResponse();
-            log.error("Response", response.toString());
-        } catch (Exception exception)
-        {
+
+            SoapObject response = (SoapObject) envelope.getResponse();
+            String goldRateString = ((SoapPrimitive) response.getProperty(0)).getValue().toString();
+
+            NumberFormat format = NumberFormat.getInstance(Locale.US);
+            Number goldRate = format.parse(goldRateString);
+            return goldRate.doubleValue();
+        } catch (Exception exception) {
             exception.printStackTrace();
         }
 
-        return new BigInteger("0");
+        return 0;
     }
 
-    // PMC
-    private static Map<String, ExchangeRate> requestPMCRates(final URL url, final String... fields) {
-        log.info("requestPMCRates " + url.toString());
-        final long start = System.currentTimeMillis();
-
-        HttpURLConnection connection = null;
-        Reader reader = null;
-
-        try {
-            if (url.toString().contains("https://")) {
-                // Ignore HTTPS errors: Begin
-                TrustManagerFactory tmf = TrustManagerFactory.getInstance(
-                        TrustManagerFactory.getDefaultAlgorithm());
-                tmf.init((KeyStore) null);
-
-                TrustManager[] trustManagers = tmf.getTrustManagers();
-                final X509TrustManager origTrustmanager = (X509TrustManager) trustManagers[0];
-
-                TrustManager[] wrappedTrustManagers = new TrustManager[]{
-                        new X509TrustManager() {
-                            public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                                return origTrustmanager.getAcceptedIssuers();
-                            }
-
-                            public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                            }
-
-                            public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                            }
-                        }
-                };
-
-                SSLContext sc = SSLContext.getInstance("TLS");
-                sc.init(null, wrappedTrustManagers, null);
-                HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-                // Ignore HTTPS errors: End
-
-                connection = (HttpsURLConnection) url.openConnection();
-            } else {
-                connection = (HttpURLConnection) url.openConnection();
-            }
-
-            connection.setConnectTimeout(Constants.HTTP_TIMEOUT_MS);
-            connection.setReadTimeout(Constants.HTTP_TIMEOUT_MS);
-            connection.connect();
-
-            final int responseCode = connection.getResponseCode();
-            log.info("requestPMCRates Resp: " + responseCode);
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                reader = new InputStreamReader(new BufferedInputStream(connection.getInputStream(), 1024), Constants.UTF_8);
-                final StringBuilder content = new StringBuilder();
-                Io.copy(reader, content);
-
-                final Map<String, ExchangeRate> rates = new TreeMap<String, ExchangeRate>();
-
-                log.info("requestPMCRates " + content.toString());
-                JSONObject o = new JSONObject(content.toString());
-
-                if (content.toString().contains("PMC/BTC")) {
-                    o = (JSONObject) o.get("PMC/BTC");
-                }
-
-                final String currencyCode = PMC_CURRENCY;
-
-                for (final String field : fields) {
-                    final String rateStr = o.optString(field, null);
-
-                    if (rateStr != null) {
-                        try {
-                            final BigInteger rate = GenericUtils.toNanoCoins(rateStr, 0);
-
-                            if (rate.signum() > 0) {
-                                rates.put(currencyCode, new ExchangeRate(currencyCode, rate, url.getHost()));
-                                break;
-                            }
-                        } catch (final ArithmeticException x) {
-                            log.warn("problem fetching {} exchange rate from {}: {}", new Object[]{currencyCode, url, x.getMessage()});
-                        }
-                    }
-                }
-
-                log.info("fetched exchange rates from {}, took {} ms", url, (System.currentTimeMillis() - start));
-
-                return rates;
-            } else {
-                log.warn("http status {} when fetching {}", responseCode, url);
-            }
-        } catch (final Exception x) {
-            log.warn("problem fetching exchange rates from " + url, x);
-            x.printStackTrace();
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (final IOException x) {
-                    // swallow
-                }
-            }
-
-            if (connection != null)
-                connection.disconnect();
-        }
-
-        return null;
-    }
-
-    private static Map<String, ExchangeRate> requestExchangeRates(final URL url, final BigInteger pmcRate, final URL pmcURL, final String... fields) {
+    private static Map<String, ExchangeRate> requestExchangeRates(final URL url, final String userAgent, final String source, final String... fields) {
         final long start = System.currentTimeMillis();
 
         HttpURLConnection connection = null;
@@ -383,24 +307,29 @@ public class ExchangeRatesProvider extends ContentProvider {
 
         try {
             connection = (HttpURLConnection) url.openConnection();
+
+            connection.setInstanceFollowRedirects(false);
             connection.setConnectTimeout(Constants.HTTP_TIMEOUT_MS);
             connection.setReadTimeout(Constants.HTTP_TIMEOUT_MS);
+            connection.addRequestProperty("User-Agent", userAgent);
+            connection.addRequestProperty("Accept-Encoding", "gzip");
             connection.connect();
 
             final int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                reader = new InputStreamReader(new BufferedInputStream(connection.getInputStream(), 1024), Constants.UTF_8);
+                final String contentEncoding = connection.getContentEncoding();
+
+                InputStream is = new BufferedInputStream(connection.getInputStream(), 1024);
+                if ("gzip".equalsIgnoreCase(contentEncoding))
+                    is = new GZIPInputStream(is);
+
+                reader = new InputStreamReader(is, Constants.UTF_8);
                 final StringBuilder content = new StringBuilder();
-                Io.copy(reader, content);
+                final long length = Io.copy(reader, content);
 
                 final Map<String, ExchangeRate> rates = new TreeMap<String, ExchangeRate>();
 
                 final JSONObject head = new JSONObject(content.toString());
-                // PMC
-                // Add the PMC<->BTC parity
-                rates.put("BTC", new ExchangeRate("BTC", pmcRate, pmcURL.getHost()));
-                log.info("Added BTC: " + pmcRate + " / " + pmcURL.getHost());
-
                 for (final Iterator<String> i = head.keys(); i.hasNext(); ) {
                     final String currencyCode = i.next();
                     if (!"timestamp".equals(currencyCode)) {
@@ -411,23 +340,22 @@ public class ExchangeRatesProvider extends ContentProvider {
 
                             if (rateStr != null) {
                                 try {
-                                    // PMC
-                                    // Adjust rate to reflect PMC
-                                    final BigInteger rate = pmcRate.multiply(GenericUtils.toNanoCoins(rateStr, 0, false).divide(Utils.COIN));
+                                    final BigInteger rate = GenericUtils.toNanoCoins(rateStr, 0);
 
                                     if (rate.signum() > 0) {
-                                        rates.put(currencyCode, new ExchangeRate(currencyCode, rate, url.getHost()));
+                                        rates.put(currencyCode, new ExchangeRate(currencyCode, rate, source));
                                         break;
                                     }
                                 } catch (final ArithmeticException x) {
-                                    log.warn("problem fetching {} exchange rate from {}: {}", new Object[]{currencyCode, url, x.getMessage()});
+                                    log.warn("problem fetching {} exchange rate from {} ({}): {}", currencyCode, url, contentEncoding, x.getMessage());
                                 }
                             }
                         }
                     }
                 }
 
-                log.info("fetched exchange rates from {}, took {} ms", url, (System.currentTimeMillis() - start));
+                log.info("fetched exchange rates from {} ({}), {} chars, took {} ms", url, contentEncoding, length, System.currentTimeMillis()
+                        - start);
 
                 return rates;
             } else {

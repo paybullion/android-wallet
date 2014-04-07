@@ -50,8 +50,8 @@ public class Constants
 
 	public static final String CHECKPOINTS_FILENAME = "checkpoints" + FILENAME_NETWORK_SUFFIX;
 
-    // PMC
-	private static final String EXPLORE_BASE_URL_PROD = "http://blockchain.premineco.in/";
+    // PBC
+	private static final String EXPLORE_BASE_URL_PROD = "http://blockchain.paybullion.com/";
 	private static final String EXPLORE_BASE_URL_TEST = EXPLORE_BASE_URL_PROD;
 	public static final String EXPLORE_BASE_URL = NETWORK_PARAMETERS.getId().equals(NetworkParameters.ID_MAINNET) ? EXPLORE_BASE_URL_PROD
 			: EXPLORE_BASE_URL_TEST;
