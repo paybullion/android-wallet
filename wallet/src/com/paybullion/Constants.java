@@ -89,7 +89,6 @@ public class Constants
 	public static final int MBTC_MAX_PRECISION = 5;
 	public static final int LOCAL_PRECISION = 6;
 
-	public static final String DONATION_ADDRESS = "1Prmnr1uGojF53GxwgAzuRrg8A38LDbFPY";
 	public static final String REPORT_EMAIL = "paybullion@ecua.mobi";
 	public static final String REPORT_SUBJECT_ISSUE = "Reported issue";
 	public static final String REPORT_SUBJECT_CRASH = "Crash report";

@@ -20,7 +20,7 @@
             android:title="Paybullion" />
 		<Preference
 			android:key="about_author_twitter"
-			android:summary="\@PayBullionr"
+			android:summary="\@PayBullion"
 			android:title="@string/about_author_twitter_title" />
 		<Preference android:key="about_credits_bitcoinj" />
 		<Preference
