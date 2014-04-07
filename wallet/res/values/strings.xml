@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="pbc_equals_gold">1 PBC = 1 oz of Gold</string>
+
     <!-- Import PrivKey Fragment -->
     <string name="import_privkey_title">Import private key</string>
     <string name="import_privkey_fragment_private_key">Private key</string>
@@ -41,9 +43,9 @@
 	<string name="wallet_transactions_fragment_tab_received">Received</string>
 	<string name="wallet_transactions_fragment_tab_all">Both</string>
 	<string name="wallet_transactions_fragment_tab_sent">Sent</string>
-	<string name="wallet_transactions_fragment_empty_text_received">No PayBullions received so far.</string>
-	<string name="wallet_transactions_fragment_empty_text_sent">No PayBullions sent so far.</string>
-	<string name="wallet_transactions_fragment_empty_text_howto">How to get PayBullions?\n\nTrade for Bitcoin or traditional money,\nsell goods or services or\nearn by working.</string>
+	<string name="wallet_transactions_fragment_empty_text_received">No PayBullion received so far.</string>
+	<string name="wallet_transactions_fragment_empty_text_sent">No PayBullion sent so far.</string>
+	<string name="wallet_transactions_fragment_empty_text_howto">How to get PayBullion?\n\nTrade for Bitcoin or traditional money,\nsell goods or services or\nearn by working.</string>
 	<string name="wallet_transactions_row_warning_backup">Congratulations, you received your first payment! Have you already &lt;u>backed up your wallet&lt;/u>, to protect against loss?</string>
 	<string name="wallet_transactions_fragment_coinbase">mined</string>
 	<string name="wallet_transactions_fragment_internal">internal</string>
@@ -53,10 +55,10 @@
 	<string name="wallet_options_donate">Tip / Donate</string>
 	<string name="wallet_donate_address_label">Donation for PayBullion Wallet</string>
 	<string name="wallet_low_storage_dialog_title">Internal Device Storage Space Low!</string>
-	<string name="wallet_low_storage_dialog_msg">PayBullion Wallet uses internal storage for remembering transactions and blocks. If it runs out of space, it will stop working and your PayBullions will be at risk!\n\nDo you want to open the Application Manager to uninstall unneeded apps?</string>
+	<string name="wallet_low_storage_dialog_msg">PayBullion Wallet uses internal storage for remembering transactions and blocks. If it runs out of space, it will stop working and your PayBullion will be at risk!\n\nDo you want to open the Application Manager to uninstall unneeded apps?</string>
 	<string name="wallet_low_storage_dialog_button_apps">Manage Apps</string>
 	<string name="wallet_timeskew_dialog_title">Check your time settings!</string>
-	<string name="wallet_timeskew_dialog_msg">Your device time is off by %d minutes. You probably cannot send or receive PayBullions due to this problem.\n\nYou should check and correct your time and timezone settings.</string>
+	<string name="wallet_timeskew_dialog_msg">Your device time is off by %d minutes. You probably cannot send or receive PayBullion due to this problem.\n\nYou should check and correct your time and timezone settings.</string>
 	<string name="wallet_version_dialog_title">A new version is available!</string>
 	<string name="wallet_version_dialog_msg">This version fixes important bugs. For details, see the change log on Google Play.</string>
 	<string name="wallet_version_dialog_button_market">Google Play</string>

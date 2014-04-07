@@ -1,40 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Import private key -->
-    <string name="help_import_privkey">
-<![CDATA[
-		<p>
-			This option allows you to import a private key.
-		</p>
-		<p>
-			This can be used to redeem a Paper Wallet or import a Vanity Address.
-		</p>
-		<p>
-			You can create a Paper Wallet (Cold Storage) at <b>PayBullionr.com</b>.
-		</p>
-		<p>
-			Enter the Private Key you want to import,
-			or touch the camera icon to scan a QR Code.
-			Then, select the option \'Import\'.
-		</p>
-		<p>
-		    <b>Warning</b>
-		    Importing a Private Key requires resetting and reloading the Block Chain.<br/>
-		    This takes several minutes. You won\'t be able to use the Wallet during that time.
-		</p>
-		<p>
-		    You can only import private keys in <b>WIF format</b>
-		    (51 base58 characters, starts with a \'5\')
-		    or BIP38-encrypted WIF keys.
-		</p>
-	]]>
-	</string>
-
 	<string name="help_wallet">
 <![CDATA[
 		<p>
-			The upper left part of the screen displays your selected PayBullion address that other people need to know in order to send you PayBullions.
+			The upper left part of the screen displays your selected PayBullion address that other people need to know in order to send you PayBullion.
 			Tap to change the address.
 		</p>
 		<p>
@@ -64,7 +34,7 @@
 			Using this dialog, you can request coins from another person (who should already have installed PayBullion Wallet).
 		</p>
 		<p>
-			First, you can enter an amount of PayBullions to request.
+			First, you can enter an amount of PayBullion to request.
 		</p>
 		<p>
 			Then, you either have the generated QR code scanned by the other person.
@@ -89,7 +59,7 @@
 			You can also scan QR codes with PayBullion addresses or PayBullion requests by pressing the QR button in the action bar.
 		</p>
 		<p>
-			Next, you can see how many PayBullions you can spend at the moment.
+			Next, you can see how many PayBullion you can spend at the moment.
 			Any difference to the balance from the main screen is still unconfirmed and can thus not yet be spent.
 		</p>
 		<p>
@@ -113,8 +83,8 @@
 			<b>Important safety notes:</b>
 		</p>
 		<p>
-			PayBullions are stored on the device.
-			<b>If you lose it, you\'ll lose your PayBullions.</b>
+			PayBullion is stored on the device.
+			<b>If you lose it, you\'ll lose your PayBullion.</b>
 		</p>
 		<p>
 			This means you need to <b>back up your wallet</b>!
@@ -122,12 +92,12 @@
 			Keep your backup safe and remember the password.
 		</p>
 		<p>
-			<b>Before uninstalling</b> (or clearing app data/wiping your device), <b>transfer your PayBullions to another wallet</b>.
-			Remaining PayBullions will be lost.
+			<b>Before uninstalling</b> (or clearing app data/wiping your device), <b>transfer your PayBullion to another wallet</b>.
+			Remaining PayBullion will be lost.
 		</p>
 		<p>
 			<b>Payments are irreversible</b>.
-			If you send your PayBullions into the void, there is almost no way to get them back.
+			If you send your PayBullion into the void, there is almost no way to get them back.
 		</p>
 		<p>
 			<b>Keep your mobile device safe!</b>

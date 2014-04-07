@@ -223,6 +223,7 @@ public final class WalletBalanceFragment extends Fragment
 				viewBalanceBtc.setPrecision(config.getBtcPrecision(), config.getBtcShift());
 				viewBalanceBtc.setPrefix(config.getBtcPrefix());
 				viewBalanceBtc.setAmount(balance);
+                String equalsGoldMessage = null;
 
 				if (showLocalBalance)
 				{
@@ -234,10 +235,16 @@ public final class WalletBalanceFragment extends Fragment
 						viewBalanceLocal.setAmount(localValue);
 						viewBalanceLocal.setTextColor(getResources().getColor(R.color.fg_less_significant));
 					}
-					else
+					else if(null != (equalsGoldMessage = getString(R.string.pbc_equals_gold)))
 					{
-						viewBalanceLocalFrame.setVisibility(View.INVISIBLE);
+                        viewBalanceLocalFrame.setVisibility(View.VISIBLE);
+                        viewBalanceLocal.setPrefix(equalsGoldMessage);
+                        viewBalanceLocal.setAmount(new BigInteger("-1"));
 					}
+                    else
+                    {
+                        viewBalanceLocalFrame.setVisibility(View.GONE);
+                    }
 				}
 			}
 			else

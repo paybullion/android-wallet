@@ -31,7 +31,7 @@
 	<string name="wallet_transactions_fragment_tab_sent">Gesendet</string>
 	<string name="wallet_transactions_fragment_empty_text_received">Noch keine PayBullions empfangen.</string>
 	<string name="wallet_transactions_fragment_empty_text_sent">Noch keine PayBullions gesendet.</string>
-	<string name="wallet_transactions_fragment_empty_text_howto">Wie komme ich an PayBullions?\n\nHandle gegen traditionelles Geld,\nverkaufe Güter oder Dienstleistungen oder\nverdiene durch Arbeit.</string>
+	<string name="wallet_transactions_fragment_empty_text_howto">Wie komme ich an PayBullion?\n\nHandle gegen traditionelles Geld,\nverkaufe Güter oder Dienstleistungen oder\nverdiene durch Arbeit.</string>
 	<string name="wallet_transactions_row_warning_backup">Gratulation, du hast deine erste Zahlung erhalten! Hast du deine Wallet bereits &lt;u>gesichert&lt;/u>, um dich gegen Verlust zu schützen?</string>
 	<string name="wallet_transactions_fragment_coinbase">geschürft</string>
 	<string name="wallet_transactions_fragment_internal">intern</string>

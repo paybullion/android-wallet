@@ -29,7 +29,7 @@
 	<string name="wallet_transactions_fragment_tab_sent">Sendt</string>
 	<string name="wallet_transactions_fragment_empty_text_received">Ingen PayBullions modtaget endnu.</string>
 	<string name="wallet_transactions_fragment_empty_text_sent">Ingen PayBullions sendt endnu.</string>
-	<string name="wallet_transactions_fragment_empty_text_howto">Hvordan får man PayBullions?\n\nKøb for traditionelle penge,\nsælg varer eller ydelser eller\ntjen dem ved at arbejde.</string>
+	<string name="wallet_transactions_fragment_empty_text_howto">Hvordan får man PayBullion?\n\nKøb for traditionelle penge,\nsælg varer eller ydelser eller\ntjen dem ved at arbejde.</string>
 	<string name="wallet_transactions_row_warning_backup">Tillykke, du har modtaget din første betaling! Har du &lt;u>taget en sikkerhedskopi af din tegnebog&lt;/u>, for at beskytte dig mod tab?</string>
 	<string name="wallet_transactions_fragment_coinbase">mined</string>
 	<string name="wallet_transactions_fragment_internal">intern</string>

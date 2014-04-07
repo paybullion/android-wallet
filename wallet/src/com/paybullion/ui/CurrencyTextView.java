@@ -129,7 +129,11 @@ public final class CurrencyTextView extends TextView
 		if (amount != null)
 		{
 			final String s;
-			if (alwaysSigned)
+            if(amount.doubleValue() == -1)
+            {
+                s = "";
+            }
+			else if (alwaysSigned)
 				s = GenericUtils.formatValue(amount, Constants.CURRENCY_PLUS_SIGN, Constants.CURRENCY_MINUS_SIGN, precision, shift);
 			else
 				s = GenericUtils.formatValue(amount, precision, shift);

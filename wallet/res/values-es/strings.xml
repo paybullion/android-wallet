@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+    <string name="pbc_equals_gold">1 PBC = 1 oz de oro</string>
 
 	<string name="toast_wallet_reset">La cartera se ha reiniciado\ny tardará un poco en reactivarse</string>
 	<string name="wallet_disclaimer_fragment_remind_safety">Utilízalo bajo tu propio riesgo. Lee las &lt;u&gt;notas de seguridad&lt;/u&gt;.</string>
@@ -29,7 +30,7 @@
 	<string name="wallet_transactions_fragment_tab_sent">Enviados</string>
 	<string name="wallet_transactions_fragment_empty_text_received">Aún no se han recibido PayBullions</string>
 	<string name="wallet_transactions_fragment_empty_text_sent">Aún no se han enviado PayBullions</string>
-	<string name="wallet_transactions_fragment_empty_text_howto">¿Cómo conseguir PayBullions?\n\nCámbialos por dinero tradicional,\nvende bienes y servicios o\ngánalos trabajando.</string>
+	<string name="wallet_transactions_fragment_empty_text_howto">¿Cómo conseguir PayBullion?\n\nCámbialos por dinero tradicional,\nvende bienes y servicios o\ngánalos trabajando.</string>
 	<string name="wallet_transactions_row_warning_backup">Enhorabuena. ¡Has recibido tu primer pago! ¿Has hecho ya una &lt;u&gt;copia de seguridad de tu monedero&lt;/u&gt; como protección frente a pérdidas?</string>
 	<string name="wallet_transactions_fragment_coinbase">minados</string>
 	<string name="wallet_transactions_fragment_internal">interno</string>

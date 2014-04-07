@@ -29,7 +29,7 @@
 	<string name="wallet_transactions_fragment_tab_sent">Odoslané</string>
 	<string name="wallet_transactions_fragment_empty_text_received">Zatiaľ neboli prijaté žiadne PayBulliony</string>
 	<string name="wallet_transactions_fragment_empty_text_sent">Zatiaľ neboli odoslané žiadne PayBulliony</string>
-	<string name="wallet_transactions_fragment_empty_text_howto">Ako získať PayBulliony?\n\nVýmenou za tradičné peniaze,\npredajom tovarov a služieb,\nalebo prácou.</string>
+	<string name="wallet_transactions_fragment_empty_text_howto">Ako získať PayBullion?\n\nVýmenou za tradičné peniaze,\npredajom tovarov a služieb,\nalebo prácou.</string>
 	<string name="wallet_transactions_row_warning_backup">Gratulujeme, obdržali ste svoju prvú platbu! Urobili ste &lt;u>zálohu peňaženky&lt;/u>, aby ste ju ochránili pred stratou?</string>
 	<string name="wallet_transactions_fragment_coinbase">vyťažené</string>
 	<string name="wallet_transactions_fragment_internal">vnútorné</string>
